@@ -16,9 +16,12 @@ var {
 var CodepotReact = React.createClass({
   render: function() {
     return (
-      // TODO(TASK3): add another animated gif image (via URL). Remember about defaults
-      <View style={styles.container}>
+      <View style={ [styles.container, styles.background] }>
         <Image source={require('image!codepot')} style={styles.image}/>
+        <Image
+          source={{uri: 'https://www.dropbox.com/s/2pd4vb1147zupwq/codepot_gray.png?dl=1'}}
+          defaultSource={require('image!codepot')}
+          style={styles.image}/>
       </View>
     );
   }
@@ -35,8 +38,10 @@ var styles = StyleSheet.create({
     width: 200,
     height: 200,
     resizeMode: Image.resizeMode.contain
+  },
+  background: {
+    backgroundColor: '#FFFFFF',
   }
-  // TODO(TASK3): maybe we can do something about the background ? Ideas ?
 });
 
 AppRegistry.registerComponent('CodepotReact', () => CodepotReact);
