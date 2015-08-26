@@ -12,9 +12,12 @@ var {
   View,
 } = React;
 
+// TODO(TASK2): create .xcassets folder and add images to it (XCode)
 var CodepotReact = React.createClass({
   render: function() {
     return (
+      // TODO(TASK2): remove the default texts - we do not need them any more
+      // TODO(TASK2): Add image JSX tag referring to the static image
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
@@ -32,6 +35,7 @@ var CodepotReact = React.createClass({
 });
 
 var styles = StyleSheet.create({
+  // TODO(TASK2): add style for the image and remove unused ones
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -49,5 +53,6 @@ var styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+//TODO(TASK2): Try to figure out what I have not told to do ;)
 
 AppRegistry.registerComponent('CodepotReact', () => CodepotReact);
