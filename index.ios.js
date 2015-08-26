@@ -16,6 +16,7 @@ var {
 var CodepotReact = React.createClass({
   render: function() {
     return (
+      // TODO(TASK3): add another animated gif image (via URL). Remember about defaults
       <View style={styles.container}>
         <Image source={require('image!codepot')} style={styles.image}/>
       </View>
@@ -35,6 +36,7 @@ var styles = StyleSheet.create({
     height: 200,
     resizeMode: Image.resizeMode.contain
   }
+  // TODO(TASK3): maybe we can do something about the background ? Ideas ?
 });
 
 AppRegistry.registerComponent('CodepotReact', () => CodepotReact);
