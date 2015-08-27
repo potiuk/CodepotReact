@@ -27,6 +27,7 @@ var CodepotReact = React.createClass({
   },
   onButtonPressed: function() {
     console.log("Button pressed")
+    // TODO(TASK6): change state
   },
   render: function() {
     return (
@@ -41,6 +42,8 @@ var CodepotReact = React.createClass({
           style={styles.image}/>
       </View>
     );
+    // TODO(TASK6): implement two different renderings based on value of initialState
+    // TODO(TASK6): refactor to two separate methods
   }
 });
 
