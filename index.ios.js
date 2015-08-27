@@ -21,12 +21,15 @@ var CodepotReact = React.createClass({
   },
   componentWillMount: function() {
     console.log(`I will mount! : ${JSON.stringify(this.state)}`)
+    // TODO(TASK7): add preset animation when mounting
   },
   componentDidMount: function() {
     console.log("I am mounted!", this.state)
   },
   onButtonPressed: function() {
     console.log("Button pressed");
+    // TODO(TASK7): add preset animation
+    // TODO(TASK7): add custom animation
     this.setState({initialState: false})
   },
   renderInitial: function() {
