@@ -28,12 +28,22 @@ var CodepotReact = React.createClass({
     console.log("I am mounted!", this.state)
   },
   onButtonPressed: function() {
-    console.log("Button pressed");
-    // TODO(TASK9): Changing log entry
+    console.log("Fetching data");
     LayoutAnimation.configureNext(CustomAnimationPresets.myAnimation);
     this.setState({initialState: false})
-    // TODO(TASK9): Start fetching data here
-  // TODO(TASK9): define fetch function here
+    this.fetchData();
+  },
+  fetchData: function() {
+    fetch('https://backend.codepot.pl/api/workshops/')
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log("Received workshop data: Number of workshops = " + responseData.workshops.length);
+        this.setState({
+          workshops: responseData.workshops,
+        });
+        console.log("Workshops", responseData.workshops)
+      })
+      .done();
   },
   renderInitial: function() {
     return(
@@ -48,10 +58,9 @@ var CodepotReact = React.createClass({
   },
   renderClicked: function() {
     return (
-      // TODO(TASK9): conditionaly write the fetching status
       <View style={ [styles.container, styles.background] }>
         <Image key="aaaa" source={require('image!codepot')} style={styles.image}/>
-        <Text style={styles.text}>Clicked!</Text>
+        <Text style={styles.text}>{this.state.workshops ? `Fetched ${this.state.workshops.length} workshops!` : "Fetching"}</Text>
       </View>
     );
   },
@@ -65,9 +74,8 @@ var CodepotReact = React.createClass({
 });
 
 var CustomAnimationPresets = {
-  //TODO(TASK9): make the animation shorter
   myAnimation: {
-    duration: 1200,
+    duration: 500,
     create: {
       type: 'easeInEaseOut',
       property: 'scaleXY',
