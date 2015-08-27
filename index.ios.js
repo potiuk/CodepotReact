@@ -10,7 +10,9 @@ var {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  TouchableHighlight,
+  TouchableOpacity
 } = React;
 
 var CodepotReact = React.createClass({
@@ -23,12 +25,16 @@ var CodepotReact = React.createClass({
   componentDidMount: function() {
     console.log("I am mounted!", this.state)
   },
-  // TODO(TASK5): Add function logging button press
+  onButtonPressed: function() {
+    console.log("Button pressed")
+  },
   render: function() {
     return (
-      // TODO(TASK5): add button between images (no Button? how else can we do it ?)
       <View style={ [styles.container, styles.background] }>
         <Image source={require('image!codepot')} style={styles.image}/>
+        <TouchableOpacity onPress={this.onButtonPressed}>
+          <Text style={styles.button}>Click me!</Text>
+        </TouchableOpacity>
         <Image
           source={{uri: 'https://www.dropbox.com/s/2pd4vb1147zupwq/codepot_gray.png?dl=1'}}
           defaultSource={require('image!codepot')}
@@ -52,8 +58,14 @@ var styles = StyleSheet.create({
   },
   background: {
     backgroundColor: '#FFFFFF',
-  }
-  //TODO(TASK5): Add style for the button
+  },
+  button: {
+    margin: 10,
+    padding: 10,
+    paddingRight: 20,
+    paddingLeft: 20,
+    borderWidth: 1,
+  },
 });
 
 AppRegistry.registerComponent('CodepotReact', () => CodepotReact);
