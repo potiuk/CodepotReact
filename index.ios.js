@@ -23,8 +23,10 @@ var CodepotReact = React.createClass({
   componentDidMount: function() {
     console.log("I am mounted!", this.state)
   },
+  // TODO(TASK5): Add function logging button press
   render: function() {
     return (
+      // TODO(TASK5): add button between images (no Button? how else can we do it ?)
       <View style={ [styles.container, styles.background] }>
         <Image source={require('image!codepot')} style={styles.image}/>
         <Image
@@ -51,6 +53,7 @@ var styles = StyleSheet.create({
   background: {
     backgroundColor: '#FFFFFF',
   }
+  //TODO(TASK5): Add style for the button
 });
 
 AppRegistry.registerComponent('CodepotReact', () => CodepotReact);
