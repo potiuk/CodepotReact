@@ -26,11 +26,11 @@ var CodepotReact = React.createClass({
     console.log("I am mounted!", this.state)
   },
   onButtonPressed: function() {
-    console.log("Button pressed")
-    // TODO(TASK6): change state
+    console.log("Button pressed");
+    this.setState({initialState: false})
   },
-  render: function() {
-    return (
+  renderInitial: function() {
+    return(
       <View style={ [styles.container, styles.background] }>
         <Image source={require('image!codepot')} style={styles.image}/>
         <TouchableOpacity onPress={this.onButtonPressed}>
@@ -41,9 +41,22 @@ var CodepotReact = React.createClass({
           defaultSource={require('image!codepot')}
           style={styles.image}/>
       </View>
+    )
+  },
+  renderClicked: function() {
+    return (
+      <View style={ [styles.container, styles.background] }>
+        <Image source={require('image!codepot')} style={styles.image}/>
+        <Text style={styles.text}>Clicked!</Text>
+      </View>
     );
-    // TODO(TASK6): implement two different renderings based on value of initialState
-    // TODO(TASK6): refactor to two separate methods
+  },
+  render: function() {
+    if(this.state.initialState) {
+      return this.renderInitial();
+    } else {
+      return this.renderClicked();
+    }
   }
 });
 
@@ -69,6 +82,12 @@ var styles = StyleSheet.create({
     paddingLeft: 20,
     borderWidth: 1,
   },
+  // TODO(TASK6): add style for the text
+  text: {
+    margin: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+  }
 });
 
 AppRegistry.registerComponent('CodepotReact', () => CodepotReact);
