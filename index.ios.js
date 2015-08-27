@@ -34,24 +34,19 @@ var CodepotReact = React.createClass({
   },
   renderInitial: function() {
     return(
-      //TODO(TASK8): Make the image same as above
-      //TODO(TASK8): Make the bottom image animate up
       <View style={ [styles.container, styles.background] }>
         <Image source={require('image!codepot')} style={styles.image}/>
         <TouchableOpacity onPress={this.onButtonPressed}>
           <Text style={styles.button}>Click me!</Text>
         </TouchableOpacity>
-        <Image
-          source={{uri: 'https://www.dropbox.com/s/2pd4vb1147zupwq/codepot_gray.png?dl=1'}}
-          defaultSource={require('image!codepot')}
-          style={styles.image}/>
+        <Image key="aaaa" source={require('image!codepot')} style={styles.image}/>
       </View>
     )
   },
   renderClicked: function() {
     return (
       <View style={ [styles.container, styles.background] }>
-        <Image source={require('image!codepot')} style={styles.image}/>
+        <Image key="aaaa" source={require('image!codepot')} style={styles.image}/>
         <Text style={styles.text}>Clicked!</Text>
       </View>
     );
