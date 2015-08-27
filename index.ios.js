@@ -12,7 +12,8 @@ var {
   View,
   Image,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
+  LayoutAnimation
 } = React;
 
 var CodepotReact = React.createClass({
@@ -21,15 +22,14 @@ var CodepotReact = React.createClass({
   },
   componentWillMount: function() {
     console.log(`I will mount! : ${JSON.stringify(this.state)}`)
-    // TODO(TASK7): add preset animation when mounting
+    LayoutAnimation.spring();
   },
   componentDidMount: function() {
     console.log("I am mounted!", this.state)
   },
   onButtonPressed: function() {
     console.log("Button pressed");
-    // TODO(TASK7): add preset animation
-    // TODO(TASK7): add custom animation
+    LayoutAnimation.configureNext(CustomAnimationPresets.myAnimation);
     this.setState({initialState: false})
   },
   renderInitial: function() {
@@ -63,6 +63,20 @@ var CodepotReact = React.createClass({
   }
 });
 
+var CustomAnimationPresets = {
+  myAnimation: {
+    duration: 1200,
+    create: {
+      type: 'easeInEaseOut',
+      property: 'scaleXY',
+    },
+    update: {
+      type: 'easeInEaseOut',
+    },
+  },
+};
+
+
 var styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -85,7 +99,6 @@ var styles = StyleSheet.create({
     paddingLeft: 20,
     borderWidth: 1,
   },
-  // TODO(TASK6): add style for the text
   text: {
     margin: 10,
     paddingLeft: 30,
