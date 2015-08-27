@@ -29,8 +29,11 @@ var CodepotReact = React.createClass({
   },
   onButtonPressed: function() {
     console.log("Button pressed");
+    // TODO(TASK9): Changing log entry
     LayoutAnimation.configureNext(CustomAnimationPresets.myAnimation);
     this.setState({initialState: false})
+    // TODO(TASK9): Start fetching data here
+  // TODO(TASK9): define fetch function here
   },
   renderInitial: function() {
     return(
@@ -45,6 +48,7 @@ var CodepotReact = React.createClass({
   },
   renderClicked: function() {
     return (
+      // TODO(TASK9): conditionaly write the fetching status
       <View style={ [styles.container, styles.background] }>
         <Image key="aaaa" source={require('image!codepot')} style={styles.image}/>
         <Text style={styles.text}>Clicked!</Text>
@@ -61,6 +65,7 @@ var CodepotReact = React.createClass({
 });
 
 var CustomAnimationPresets = {
+  //TODO(TASK9): make the animation shorter
   myAnimation: {
     duration: 1200,
     create: {
