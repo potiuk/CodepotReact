@@ -17,8 +17,8 @@ var {
   ListView
 } = React;
 
-//TODO(TASK11): separate out ShowList button to ShowListButton.js file
-//TODO(TASK11): require it here
+var ShowListButton = require ("./ShowListButton");
+
 var CodepotReact = React.createClass({
   getInitialState() {
     return { initialState: true}
@@ -60,18 +60,6 @@ var CodepotReact = React.createClass({
       </View>
     )
   },
-  getShowListButton: function() {
-    if (this.state.workshops) {
-      return (
-        <TouchableOpacity onPress={this.onShowListButtonPressed}>
-          <Text style={styles.button}>Show list!</Text>
-        </TouchableOpacity>
-      )
-    } else {
-      return <View></View>
-    }
-  },
-  // TODO(TASK11): getShowListButton should be turned into render of the new ShowListButton component
   onShowListButtonPressed: function() {
     console.log("Showing list");
     LayoutAnimation.configureNext(CustomAnimationPresets.myAnimation);
@@ -81,12 +69,12 @@ var CodepotReact = React.createClass({
     );
   },
   renderClicked: function() {
-    //TODO(TASK11): instead of conditional, use ShowListButton component
     return (
       <View style={ [styles.container, styles.background] }>
         <Image key="aaaa" source={require('image!codepot')} style={styles.image}/>
         <Text style={styles.text}>{this.state.workshops ? `Fetched ${this.state.workshops.length} workshops!` : "Fetching"}</Text>
-        { this.getShowListButton()}
+        <ShowListButton isVisible={this.state.workshops ? true : false}
+                        clicked={this.onShowListButtonPressed}/>
       </View>
     );
   },
