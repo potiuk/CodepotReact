@@ -14,12 +14,11 @@ var {
   TouchableHighlight,
   TouchableOpacity,
   LayoutAnimation,
-  ListView
 } = React;
 
 var CommonStyles = require("./common/CommonStyles");
 var ShowListButton = require ("./ShowListButton");
-//TODO(TASK13): separate out WorkshopList and require it here
+var WorkshopList = require("./WorkshopList");
 
 var CodepotReact = React.createClass({
   getInitialState() {
@@ -65,9 +64,8 @@ var CodepotReact = React.createClass({
   onShowListButtonPressed: function() {
     console.log("Showing list");
     LayoutAnimation.configureNext(CustomAnimationPresets.myAnimation);
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.setState(
-      {dataSource: ds.cloneWithRows(this.state.workshops)}
+      {listShown: true}
     );
   },
   renderClicked: function() {
@@ -80,19 +78,9 @@ var CodepotReact = React.createClass({
       </View>
     );
   },
-  renderList() {
-    return (
-      <ListView
-        dataSource={this.state.dataSource}
-        initialListSize={30}
-        renderRow={(workshop) => <Text>{workshop.title}</Text>}/>
-    );
-  },
-
   render: function() {
-    if (this.state.dataSource) {
-        return this.renderList();
-      // TODO(TASK13): use the new component here
+    if (this.state.listShown) {
+      return <WorkshopList workshops={this.state.workshops}/>;
     } else {
       if(this.state.initialState) {
         return this.renderInitial();
