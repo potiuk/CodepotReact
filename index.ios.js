@@ -17,7 +17,7 @@ var {
   ListView
 } = React;
 
-// TODO(TASK12): require CommonStyles and use it later where button style is used
+var CommonStyles = require("./common/CommonStyles");
 var ShowListButton = require ("./ShowListButton");
 
 var CodepotReact = React.createClass({
@@ -55,7 +55,7 @@ var CodepotReact = React.createClass({
       <View style={ [styles.container, styles.background] }>
         <Image source={require('image!codepot')} style={styles.image}/>
         <TouchableOpacity onPress={this.onButtonPressed}>
-          <Text style={styles.button}>Click me!</Text>
+          <Text style={CommonStyles.button}>Click me!</Text>
         </TouchableOpacity>
         <Image key="aaaa" source={require('image!codepot')} style={styles.image}/>
       </View>
@@ -114,8 +114,6 @@ var CustomAnimationPresets = {
   },
 };
 
-
-// TODO(TASK12): move button style to common/CommonStyles.js
 var styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -130,13 +128,6 @@ var styles = StyleSheet.create({
   },
   background: {
     backgroundColor: '#FFFFFF',
-  },
-  button: {
-    margin: 10,
-    padding: 10,
-    paddingRight: 20,
-    paddingLeft: 20,
-    borderWidth: 1,
   },
   text: {
     margin: 10,
