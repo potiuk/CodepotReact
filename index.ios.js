@@ -38,6 +38,7 @@ var CodepotReact = React.createClass({
       .then((response) => response.json())
       .then((responseData) => {
         console.log("Received workshop data: Number of workshops = " + responseData.workshops.length);
+        // TODO(TASK10): add animation on receiving workshops
         this.setState({
           workshops: responseData.workshops,
         });
@@ -56,7 +57,10 @@ var CodepotReact = React.createClass({
       </View>
     )
   },
+  // TODO(TASK10): add method to return "Show List" button conditionally
+  // TODO(TASK10): add method to be called when "Show List" button is pressed
   renderClicked: function() {
+    // TODO(TASK10): add conditional showing of the "Show List" button
     return (
       <View style={ [styles.container, styles.background] }>
         <Image key="aaaa" source={require('image!codepot')} style={styles.image}/>
@@ -64,9 +68,11 @@ var CodepotReact = React.createClass({
       </View>
     );
   },
+  // TODO(TASK10): add method that renders list
   render: function() {
     if(this.state.initialState) {
       return this.renderInitial();
+    // TODO(TASK10): add conditional to show list when data source appears in state
     } else {
       return this.renderClicked();
     }
