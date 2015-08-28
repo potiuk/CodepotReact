@@ -17,6 +17,8 @@ var {
   ListView
 } = React;
 
+//TODO(TASK11): separate out ShowList button to ShowListButton.js file
+//TODO(TASK11): require it here
 var CodepotReact = React.createClass({
   getInitialState() {
     return { initialState: true}
@@ -69,6 +71,7 @@ var CodepotReact = React.createClass({
       return <View></View>
     }
   },
+  // TODO(TASK11): getShowListButton should be turned into render of the new ShowListButton component
   onShowListButtonPressed: function() {
     console.log("Showing list");
     LayoutAnimation.configureNext(CustomAnimationPresets.myAnimation);
@@ -78,6 +81,7 @@ var CodepotReact = React.createClass({
     );
   },
   renderClicked: function() {
+    //TODO(TASK11): instead of conditional, use ShowListButton component
     return (
       <View style={ [styles.container, styles.background] }>
         <Image key="aaaa" source={require('image!codepot')} style={styles.image}/>
