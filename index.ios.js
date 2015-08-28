@@ -19,6 +19,7 @@ var {
 var CommonStyles = require("./common/CommonStyles");
 var ShowListButton = require ("./ShowListButton");
 var WorkshopList = require("./WorkshopList");
+// TODO(TASK14): separate out and require InitialScreen
 
 var CodepotReact = React.createClass({
   getInitialState() {
@@ -37,6 +38,7 @@ var CodepotReact = React.createClass({
     this.setState({initialState: false})
     this.fetchData();
   },
+  //TODO(TASK14): move the relevant methods to InitialScreen
   fetchData: function() {
     fetch('https://backend.codepot.pl/api/workshops/')
       .then((response) => response.json())
@@ -78,6 +80,7 @@ var CodepotReact = React.createClass({
       </View>
     );
   },
+  // TODO(TASK14): render should now return InitialScreen if list not shown
   render: function() {
     if (this.state.listShown) {
       return <WorkshopList workshops={this.state.workshops}/>;
@@ -125,5 +128,6 @@ var styles = StyleSheet.create({
     paddingRight: 30,
   }
 });
+//TODO(TASK14): styles can now be moved to InitialScreen
 
 AppRegistry.registerComponent('CodepotReact', () => CodepotReact);
