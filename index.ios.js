@@ -17,6 +17,7 @@ var {
   ListView
 } = React;
 
+// TODO(TASK12): require CommonStyles and use it later where button style is used
 var ShowListButton = require ("./ShowListButton");
 
 var CodepotReact = React.createClass({
@@ -114,6 +115,7 @@ var CustomAnimationPresets = {
 };
 
 
+// TODO(TASK12): move button style to common/CommonStyles.js
 var styles = StyleSheet.create({
   container: {
     flex: 1,

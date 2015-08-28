@@ -9,6 +9,7 @@ var {
   } = React;
 
 var ReactPropTypes = require('ReactPropTypes');
+//TODO(TASK12): require CommonStyles and use it later where button style is used
 
 var ShowListButton = React.createClass({
   propTypes: {
@@ -27,6 +28,7 @@ var ShowListButton = React.createClass({
     }
   }
 });
+// TODO(TASK12): remove style reference from here (and remove it from dependencies above!)
 
 
 var styles = StyleSheet.create({
