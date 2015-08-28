@@ -19,6 +19,7 @@ var {
 
 var CommonStyles = require("./common/CommonStyles");
 var ShowListButton = require ("./ShowListButton");
+//TODO(TASK13): separate out WorkshopList and require it here
 
 var CodepotReact = React.createClass({
   getInitialState() {
@@ -91,6 +92,7 @@ var CodepotReact = React.createClass({
   render: function() {
     if (this.state.dataSource) {
         return this.renderList();
+      // TODO(TASK13): use the new component here
     } else {
       if(this.state.initialState) {
         return this.renderInitial();
