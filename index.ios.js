@@ -13,7 +13,8 @@ var {
   Image,
   TouchableHighlight,
   TouchableOpacity,
-  LayoutAnimation
+  LayoutAnimation,
+  ListView
 } = React;
 
 var CodepotReact = React.createClass({
@@ -38,7 +39,7 @@ var CodepotReact = React.createClass({
       .then((response) => response.json())
       .then((responseData) => {
         console.log("Received workshop data: Number of workshops = " + responseData.workshops.length);
-        // TODO(TASK10): add animation on receiving workshops
+        LayoutAnimation.configureNext(CustomAnimationPresets.myAnimation);
         this.setState({
           workshops: responseData.workshops,
         });
@@ -57,24 +58,52 @@ var CodepotReact = React.createClass({
       </View>
     )
   },
-  // TODO(TASK10): add method to return "Show List" button conditionally
-  // TODO(TASK10): add method to be called when "Show List" button is pressed
+  getShowListButton: function() {
+    if (this.state.workshops) {
+      return (
+        <TouchableOpacity onPress={this.onShowListButtonPressed}>
+          <Text style={styles.button}>Show list!</Text>
+        </TouchableOpacity>
+      )
+    } else {
+      return <View></View>
+    }
+  },
+  onShowListButtonPressed: function() {
+    console.log("Showing list");
+    LayoutAnimation.configureNext(CustomAnimationPresets.myAnimation);
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.setState(
+      {dataSource: ds.cloneWithRows(this.state.workshops)}
+    );
+  },
   renderClicked: function() {
-    // TODO(TASK10): add conditional showing of the "Show List" button
     return (
       <View style={ [styles.container, styles.background] }>
         <Image key="aaaa" source={require('image!codepot')} style={styles.image}/>
         <Text style={styles.text}>{this.state.workshops ? `Fetched ${this.state.workshops.length} workshops!` : "Fetching"}</Text>
+        { this.getShowListButton()}
       </View>
     );
   },
-  // TODO(TASK10): add method that renders list
+  renderList() {
+    return (
+      <ListView
+        dataSource={this.state.dataSource}
+        initialListSize={30}
+        renderRow={(workshop) => <Text>{workshop.title}</Text>}/>
+    );
+  },
+
   render: function() {
-    if(this.state.initialState) {
-      return this.renderInitial();
-    // TODO(TASK10): add conditional to show list when data source appears in state
+    if (this.state.dataSource) {
+        return this.renderList();
     } else {
-      return this.renderClicked();
+      if(this.state.initialState) {
+        return this.renderInitial();
+      } else {
+        return this.renderClicked();
+      }
     }
   }
 });
